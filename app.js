@@ -38,11 +38,7 @@ var blogSchema= mongoose.Schema({
 var Blog= mongoose.model('Blog', blogSchema);
 
 
-Blog.create({
-  title: 'New Blog',
-  image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIaSbiFogqApvRQbwmq0BnY5sPlp6vLfIhZ5vPDTOY-4t89T01Vg',
-  body:'German Shepard are really awesome dogs'
-})
+
 
 //For home page
 
@@ -65,6 +61,24 @@ app.get('/blogs',function(req,res){
 //Create new Blogs
 app.get('/blogs/new', function(req, res){
     res.render('new');
+});
+app.post('/blogs', function(req,res){
+  var title= req.body.blog.title, image= req.body.blog.image, body= req.body.blog.body;
+  console.log(req.body);
+  Blog.create({
+    title: title, 
+    image: image,
+    body: body
+    
+  },function(err, data){
+    if(err){
+      console.log(err);
+      res.send(err);
+    }else {
+      res.redirect('/blogs');
+    }
+  });
+  
 });
 /*
 //Registration route
