@@ -80,6 +80,18 @@ app.post('/blogs', function(req,res){
   });
   
 });
+// Read Post
+app.get('/blogs/:id',function(req,res){
+    Blog.findById(req.params.id, function(err, result){
+          if(err){
+            res.redirect('/blogs');
+          }
+          else{
+            res.render('show',{result: result});
+          }
+    });
+    
+});
 /*
 //Registration route
 app.get('/register',function(req,res){

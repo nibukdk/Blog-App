@@ -4,19 +4,29 @@
 <head>
   <% include ./head.ejs %>
 </head>
-
+  
 <body>
   <div class="container-fluid">
-    <nav class="">
-        <div class="nav-wrapper #212121 grey darken-4">
-            <a class="brand-logo" href="/">My Blog</a>
-                  <ul id="nav-mobile" class="right hide-on-med-and-down ">
-                    <li><a class="" href="/">Home <span class="sr-only">(current)</span></a></li>
-                    <li><a class="" href="#">About</a></li>
-                    <li><a class="" href="#">Contact</a></li>
-                    <li><a class="" href="/blogs/new">New Post</a></li>
-                    <li><a class="" href="../login">Login</a></li>
-                    <li><a class="" href="../register">Register</a></li>
+
+        <nav>
+            <div class="nav-wrapper #212121 grey darken-4">
+                <a class="brand-logo" href="/">My Blog</a>
+                <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons">menu</i></a>
+                 <ul  class="right hide-on-med-and-down">
+                        <li><a class="" href="/">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a class="" href="#">About</a></li>
+                        <li><a class="" href="#">Contact</a></li>
+                        <li><a class="" href="/blogs/new">New Post</a></li>
+                        <li><a class="" href="../login">Login</a></li>
+                        <li><a class="" href="../register">Register</a></li>
                   </ul>
-        </div>
-    </nav>
+                 <ul id="nav-mobile" class="side-nav ">
+                        <li><a class="divider" href="/">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a class="divider" href="#">About</a></li>
+                        <li><a class="divider" href="#">Contact</a></li>
+                        <li><a class="divider" href="/blogs/new">New Post</a></li>
+                        <li><a class="divider" href="../login">Login</a></li>
+                        <li><a class="dividers" href="../register">Register</a></li>
+                </ul>
+            </div>
+        </nav>
