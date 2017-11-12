@@ -1,15 +1,17 @@
 var express = require('express'),
   bodyParser = require('body-parser'),
-  app = express(),
-  mongoose= require("mongoose");
-  
-  mongoose.connect('mongodb://localhost/blog-app');
+  methodOverride=require("method-override"),
+  mongoose = require("mongoose"),
+      app = express();
+
+  mongoose.connect('mongodb://localhost/blog-app'),
   
   //router= express.Router();
 
 
 app.use(bodyParser.urlencoded({extented:true}));
 app.use(express.static(__dirname +'/public/stylesheets/'));
+app.use(methodOverride('_method'));
 
 //Setting up the engine to use ejs and look up for views folder
 app.set('view engine','ejs');
@@ -92,6 +94,48 @@ app.get('/blogs/:id',function(req,res){
     });
     
 });
+
+//Update Blogs Post
+app.get('/blogs/:id/update',function(req,res){
+    Blog.findById(req.params.id, function(err, result){
+          if(err){
+            res.redirect('/blogs');
+          }
+          else{
+            res.render('edit',{result: result});
+          }
+    });
+   
+});
+//Update Edited Post
+app.put('/blogs/:id',function(req,res){
+  let data=req.body.blog;
+  Blog.findByIdAndUpdate(req.params.id,data, function(err,updateBlog){
+          if(err){
+            res.redirect('/blogs');
+          }
+          else{
+            res.redirect('/blogs/'+req.params.id);
+          }
+
+    } );
+});
+
+
+//Delete Post
+ app.delete('/blogs/:id',function(req,res){
+      Blog.findByIdAndRemove(req.params.id,function(err){
+            if(err){
+              res.redirect('/blogs/'+req.params.id);
+            }
+            else{
+                        res.redirect('/blogs');
+            } 
+        
+      });
+ });      
+      
+      
 /*
 //Registration route
 app.get('/register',function(req,res){
