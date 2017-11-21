@@ -1,20 +1,24 @@
 <% include partials/header.ejs %>
-     <div class="card text-center">
-           <h4 class="card-title">Register</h4>
-            <div class="card-block">
-               <form action="/register" method="POST">
-                    <div class="form-group">
-                       <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="Username">
+<div class="container section">
+        <div class="row">
+            
+            <form class="col s12 l10 #eceff1 blue-grey lighten-5 z-depth-1" action="/register" method="POST">
+                <h4 class="#00897b teal-text darken-1 center-align">Sign Up!</h4>
+                <div class="row">
+                     <div class="input-field col s10 l10 ">
+                            <input type="text" id="username"  name="user[username]" placeholder="Username" required="" aria-required="true">
+                           <label for="username">Username</label>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Username</label>
-                        <input type="password" id="password" name="password" placeholder="Password">
+                     <div class="input-field col s10 l10 ">
+                        <input type="password" name="user[password]" id="password" placeholder="Password" required="" aria-required="true">
+                         <label for="password">Password</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Regsiter</button>
-                </form>
-            </div>
-    </div>
- 
-
+                     
+                    <button class="btn waves-effect waves-light hoverable col s3 offset-s4 " type="submit" name="action">Register
+                         <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form> 
+        </div>    
+</div>
 <% include partials/footer.ejs %>
