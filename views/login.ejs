@@ -1,0 +1,24 @@
+<% include partials/header.ejs %>
+<div class="container section">
+        <div class="row">
+
+            <form class="col s12 l10 #eceff1 blue-grey lighten-5 z-depth-1" action="/login" method="POST">
+                <h4 class="#00897b teal-text darken-1 center-align">Login</h4>
+                <div class="row">
+                     <div class="input-field col s10 l10 ">
+                            <input type="text" id="username"  name="username" placeholder="Username" required="" aria-required="true">
+                           <label for="username">Username</label>
+                    </div>
+                     <div class="input-field col s10 l10 ">
+                        <input type="password" name="password" id="password" placeholder="Password" required="" aria-required="true">
+                         <label for="password">Password</label>
+                    </div>
+
+                    <button class="btn waves-effect waves-light hoverable col s3 offset-s4 " type="submit" name="action">Login
+                         <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+</div>
+<% include partials/footer.ejs %>

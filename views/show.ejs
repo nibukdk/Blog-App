@@ -1,0 +1,33 @@
+<% include partials/header.ejs %>
+    <div class="container section">
+        <div class="row">
+           <div class="col s10 m10 l10 section">
+                <div class="card z-depth-1 hoverable #263238 blue-grey darken-4">
+                    <div class="card-title center-align white-text "><%= result.title %></div>
+                    <div class="card-image responsive-img">
+                        <img  src="<%= result.image %>">
+                    </div>
+                    <div class="divider">
+                        <p><span class="right white-text"><%= result.created.toDateString()%></span></p>
+                    </div>
+                    <div class="card-content white-text ">
+                            <p><%= result.body %></p>
+                            
+                    </div>
+                    <div class="card-action center-align">
+                         <a href="/blogs/<%= result._id %>/update">Update
+                             <i class="small material-icons ">update</i>
+                         </a>
+                    </div>
+                    <div class="card-action">
+                            <form class="#263238 blue-grey darken-4 center-align" action="/blogs/<%= result._id%>?_method=DELETE" method="POST">
+                                <button class="btn #263238 blue-grey darken-4 #b71c1c-text red-text darken-4 z-depth-0">Delete
+                                    <i class="small material-icons">delete</i>
+                                </button>
+                            </form>                       
+                    </div>    
+               </div>  
+            </div> 
+        </div>
+    </div>
+<% include partials/footer.ejs %>

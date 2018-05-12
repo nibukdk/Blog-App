@@ -1,0 +1,28 @@
+<% include partials/header.ejs %>
+<div class="container section">
+        <div class="row">
+            
+            <form class="col s12 l10 #eceff1 blue-grey lighten-5 z-depth-1" action="/blogs/<%= result._id %>?_method=PUT" method="POST">
+                <h4 class="#00897b teal-text darken-1 center-align">Edit <%= result.title%> </h4>
+                <div class="row">
+                     <div class="input-field col s10 l10 ">
+                            <input type="text" id="image" value="<%= result.title%>" name="blog[title]">
+                             <label for="title">Title</label>
+                    </div>
+                     <div class="input-field col s10 l10 ">
+                        <input type="text" name="blog[image]" value="<%= result.image%>"id="image" >
+                         <label for="image">Image</label>
+                    </div>
+                     <div class="input-field col s12 l10 ">
+                         <textarea class="materialize-textarea block" id="body" name="blog[body]" value="<%= result.body %>"><%= result.body %></textarea>
+                        <label for="body">Update your Post</label>    
+                    </div>
+                    <button class="btn waves-effect waves-light hoverable col s3 offset-s4 " type="submit">Submit
+                         <i class="material-icons right">update</i>
+                    </button>
+                    
+                </div>
+            </form> 
+        </div>    
+</div>
+<% include partials/footer.ejs %>
