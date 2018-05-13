@@ -9,7 +9,8 @@ var express = require('express'),
   Blog = require("./models/post"),
   blogRoute = require("./routes/blogs.js");
   userRoute = require("./routes/users.js");
-  commentRoute = require("./routes/comments.js");
+  commentRoute = require("./routes/comments.js"),
+  portfolioRoute = require("./routes/portfolio.js");
 
   app = express();
 
@@ -44,8 +45,6 @@ app.use(function(req,res,next){
 });
 //Use of local authentication
 passport.use(new LocalStrategy(User.authenticate()));
-
-
 //Serialize and deserialize user
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -67,10 +66,7 @@ app.get('/', function(req, res) {
 app.use(blogRoute);
 app.use(userRoute);
 app.use(commentRoute);
-
-
-
-
+app.use(portfolioRoute);
 
 //Listen to server
 app.listen(8080, function() {

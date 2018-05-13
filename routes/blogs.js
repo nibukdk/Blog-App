@@ -2,6 +2,10 @@ var express = require('express'),
     router =     router = express.Router(),
     Blog = require("../models/post.js");
 
+    router.use(function(req,res,next){
+      res.locals.user= req.user;
+      next();
+    });
 
   //**********Create new Blogs*********///
   //Load blogs

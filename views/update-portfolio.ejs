@@ -1,0 +1,22 @@
+<% include partials/header.ejs %>
+<div class="container section">
+        <div class="row">
+
+            <form class="col s12 l10 #eceff1 blue-grey lighten-5 z-depth-1" action="/about?_method=PUT" method="POST">
+                <h4 class="#00897b teal-text darken-1 center-align">Update Portfolio</h4>
+                <div class="row">
+
+                       <div class="input-field col s12 l10 ">
+                           <textarea class="materialize-textarea block" id="body" name="blog[body]" placeholder="Write About....."><%= res.introduction %></textarea>
+                          <label for="body">Introduction</label>
+                      </div>
+                    
+
+                    <button class="btn waves-effect waves-light hoverable col s3 offset-s4 " type="submit" name="action">Register
+                         <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+</div>
+<% include partials/footer.ejs %>

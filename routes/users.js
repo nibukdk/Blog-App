@@ -4,7 +4,10 @@ var express = require('express'),
     passport = require("passport"),
     LocalStrategy = require("passport-local");
 
-
+    router.use(function(req,res,next){
+      res.locals.user= req.user;
+      next();
+    });
 
     //Registration route
     router.get('/register', function(req, res) {
