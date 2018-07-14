@@ -7,17 +7,19 @@ var express = require('express'),
   LocalStrategy = require("passport-local"),
   User = require("./models/user"),
   Blog = require("./models/post"),
+  Portfolio = require("./models/portfolio"),
+  Education = require("./models/education"),
+  Project = require("./models/project"),
   blogRoute = require("./routes/blogs.js");
   userRoute = require("./routes/users.js");
-  commentRoute = require("./routes/comments.js");
+  commentRoute = require("./routes/comments.js"),
+  portfolioRoute=require("./routes/portfolio.js");
+
 
   app = express();
 
 mongoose.connect('mongodb://localhost/blog-app', { useMongoClient: true });
 mongoose.Promise = global.Promise;
-
-
-
 //Setting up the engine to use ejs and look up for views folder
 
 app.set('view engine', 'ejs');
@@ -45,6 +47,15 @@ app.use(function(req,res,next){
 //Use of local authentication
 passport.use(new LocalStrategy(User.authenticate()));
 
+//Prevent back button after logout
+app.use(function (req, res, next) {
+     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+     res.header('Expires', '-1');
+     res.header('Pragma', 'no-cache');
+     next()
+ });
+
+
 
 //Serialize and deserialize user
 passport.serializeUser(User.serializeUser());
@@ -59,15 +70,23 @@ db.once('open', function() {
 
 app.get('/', function(req, res) {
   let currentUser= req.user;
-  res.redirect('/blogs');
+  res.render('portfolio');
 
 });
+
+
+app.get('/', function(req, res) {
+  let currentUser= req.user;
+  res.render('portfolio',{currentUser: c});
+
+});
+
 
 //Use ROutes
 app.use(blogRoute);
 app.use(userRoute);
 app.use(commentRoute);
-
+app.use(portfolioRoute)
 
 
 

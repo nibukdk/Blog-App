@@ -4,7 +4,17 @@ var express = require('express'),
     passport = require("passport"),
     LocalStrategy = require("passport-local");
 
-
+    router.use(function(req,res,next){
+      res.locals.user= req.user;
+      next();
+    });
+    //Prevent back button after logout
+    router.use(function (req, res, next) {
+         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+         res.header('Expires', '-1');
+         res.header('Pragma', 'no-cache');
+         next()
+     });
 
     //Registration route
     router.get('/register', function(req, res) {
@@ -26,7 +36,7 @@ var express = require('express'),
         }
 
         passport.authenticate('local')(req, res, function() {
-           res.redirect('/');
+           res.redirect('/',{currentUser: currentUser});
          });
       });
 
@@ -35,7 +45,7 @@ var express = require('express'),
     //Login Route
     router.get('/login', function(req, res) {
       let currentUser= req.user;
-      res.render('login');
+      res.render('login',{currentUser: currentUser});
     });
 
     //LOgin middleware
