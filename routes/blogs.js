@@ -3,22 +3,42 @@ var express = require('express'),
     Blog = require("../models/post.js");
 
 
+    router.use(function(req,res,next){
+      res.locals.user= req.user;
+      next();
+    });
+    //Prevent back button after logout
+    router.use(function (req, res, next) {
+         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+         res.header('Expires', '-1');
+         res.header('Pragma', 'no-cache');
+         next()
+     });
+
+    router.get('/', function(req, res) {
+      let currentUser= req.user;
+      res.render('index',{currentUser: currentUser});
+
+    });
   //**********Create new Blogs*********///
   //Load blogs
   router.get('/blogs', function(req, res) {
+    let currentUser = req.user;
     Blog.find({}, function(err, blogs) {
       if (err) {
         res.send(err);
       }
       else {
-        res.render('index', { blogs: blogs });
+        res.render('index', { blogs: blogs, currentUser : currentUser });
       }
     });
 
   });
+
+
     router.get('/blogs/new',isLoggedInMiddleWare, function(req, res) {
       let currentUser= req.user;
-      res.render('new');
+      res.render('new', {currentUser: currentUser});
     });
     router.post('/blogs', function(req, res) {
       let currentUser= req.user;
@@ -42,6 +62,7 @@ var express = require('express'),
       });
 
     });
+
     // Read Post
     router.get('/blogs/:id', function(req, res) {
       let currentUser= req.user;
@@ -50,7 +71,7 @@ var express = require('express'),
           res.redirect('/blogs');
         }
         else {
-          res.render('show', { result: result });
+          res.render('show', { result: result, currentUser: currentUser});
         }
       });
 
@@ -64,7 +85,7 @@ var express = require('express'),
           res.redirect('/blogs');
         }
         else {
-          res.render('edit', { result: result });
+          res.render('edit', { result: result , currentUser: currentUser});
         }
       });
 
@@ -107,7 +128,6 @@ var express = require('express'),
       }
 
         res.redirect("/login");
-
     }
 
 module.exports = router;

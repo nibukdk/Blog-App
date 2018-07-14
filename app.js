@@ -15,9 +15,6 @@ var express = require('express'),
 
 mongoose.connect('mongodb://localhost/blog-app', { useMongoClient: true });
 mongoose.Promise = global.Promise;
-
-
-
 //Setting up the engine to use ejs and look up for views folder
 
 app.set('view engine', 'ejs');
@@ -45,6 +42,15 @@ app.use(function(req,res,next){
 //Use of local authentication
 passport.use(new LocalStrategy(User.authenticate()));
 
+//Prevent back button after logout
+app.use(function (req, res, next) {
+     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+     res.header('Expires', '-1');
+     res.header('Pragma', 'no-cache');
+     next()
+ });
+
+
 
 //Serialize and deserialize user
 passport.serializeUser(User.serializeUser());
@@ -62,6 +68,7 @@ app.get('/', function(req, res) {
   res.redirect('/blogs');
 
 });
+
 
 //Use ROutes
 app.use(blogRoute);
