@@ -17,13 +17,15 @@ var express = require('express'),
      });
 
     //Registration route
-    router.get('/register', function(req, res) {
-      let currentUser= req.user;
-      res.render('register');
+    router.get("/register", function(req, res) {
+    let currentUser = req.user;
+    res.render("register", {
+      currentUser: currentUser
     });
+  });
 
+  router.post("/register", function(req, res) {
 
-    router.post('/register', function(req, res) {
       let currentUser= req.user;
       let username = req.body.username,
         password = req.body.password;
@@ -31,12 +33,14 @@ var express = require('express'),
     let newUser = new User({ username: req.body.username});
       User.register( newUser,password, function(err, newUser) {
         if (err) {
-          console.log(err);
-          return res.render('register');
-        }
+        console.log(err);
+        return res.redirect("back");
+
+      }
+      //res.redirect('/blogs');
 
         passport.authenticate('local')(req, res, function() {
-           res.redirect('/',{currentUser: currentUser});
+           res.redirect('/blogs');
          });
       });
 

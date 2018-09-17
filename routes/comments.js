@@ -1,5 +1,5 @@
 var express = require('express'),
-    router =     router = express.Router();
+   router = express.Router();
 
 
 

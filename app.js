@@ -1,5 +1,5 @@
 var express = require('express'),
-    router = express.Router(),
+  router = express.Router(),
   bodyParser = require('body-parser'),
   methodOverride = require("method-override"),
   mongoose = require("mongoose"),
@@ -11,21 +11,26 @@ var express = require('express'),
   Education = require("./models/education"),
   Project = require("./models/project"),
   blogRoute = require("./routes/blogs.js");
-  userRoute = require("./routes/users.js");
-  commentRoute = require("./routes/comments.js"),
-  portfolioRoute=require("./routes/portfolio.js");
+userRoute = require("./routes/users.js");
+commentRoute = require("./routes/comments.js"),
+  portfolioRoute = require("./routes/portfolio.js");
 
 
-  app = express();
+app = express();
 
-mongoose.connect('mongodb://localhost/blog-app', { useMongoClient: true });
+mongoose.connect('mongodb://localhost/blog-app', {
+  useNewUrlParser: true
+});
+mongoose.set('useCreateIndex', true)
 mongoose.Promise = global.Promise;
 //Setting up the engine to use ejs and look up for views folder
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-app.use(bodyParser.urlencoded({ extented: true }));
+app.use(bodyParser.urlencoded({
+  extented: true
+}));
 app.use(express.static(__dirname + '/public/stylesheets/'));
 app.use(methodOverride('_method'));
 
@@ -40,20 +45,20 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Get current user
-app.use(function(req,res,next){
-  res.locals.user= req.user;
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
   next();
 });
 //Use of local authentication
 passport.use(new LocalStrategy(User.authenticate()));
 
 //Prevent back button after logout
-app.use(function (req, res, next) {
-     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-     res.header('Expires', '-1');
-     res.header('Pragma', 'no-cache');
-     next()
- });
+app.use(function(req, res, next) {
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.header('Expires', '-1');
+  res.header('Pragma', 'no-cache');
+  next()
+});
 
 
 
@@ -68,16 +73,14 @@ db.once('open', function() {
   console.log('connected');
 });
 
-app.get('/', function(req, res) {
-  let currentUser= req.user;
-  res.render('portfolio');
 
-});
 
 
 app.get('/', function(req, res) {
-  let currentUser= req.user;
-  res.render('portfolio',{currentUser: c});
+  let currentUser = req.user;
+  res.render('portfolio', {
+    currentUser: currentUser
+  });
 
 });
 

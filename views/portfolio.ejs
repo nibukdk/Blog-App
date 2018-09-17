@@ -7,73 +7,76 @@
 
 <body>
   <div class="container-fluid">
-        <nav>
-            <div class="nav-wrapper #212121 grey darken-4">
-                <a class="brand-logo" href="/">Portfolio</a>
-                <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons">menu</i></a>
+    <div class="navbar-fixed">
+
+      <nav>
+        <div class="nav-wrapper #212121 grey darken-4">
+          <a class="brand-logo" href="/">Portfolio</a>
+          <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons">menu</i></a>
 
 
-               <ul  class="right hide-on-med-and-down">
+          <ul class="right hide-on-med-and-down">
 
-                          <li><a class="" href="/#about">About</a></li>
-                          <li><a class="" href="#contact">Contact</a></li>
-                          <li><a class="" href="/blogs">Blogs</a></li>
-                          <li><a class="" href="#projects">Projects</a></li>
-                  </ul>
-                 <ul id="nav-mobile" class="side-nav ">
+            <li><a class="" href="/#about">About</a></li>
+            <li><a class="" href="#contact">Contact</a></li>
+            <li><a class="" href="/blogs">Blogs</a></li>
+            <li><a class="" href="#projects">Projects</a></li>
+          </ul>
+          <ul id="nav-mobile" class="side-nav ">
 
-                           <li><a class="" href="#about">About</a></li>
-                           <li><a class="" href="#contact">Contact</a></li>
-                           <li><a class="" href="/blogs">Blogs</a></li>
-                           <li><a class="" href="#projects">Projects</a></li>
-                </ul>
-            </div>
-        </nav>
+            <li><a class="" href="#about">About</a></li>
+            <li><a class="" href="#contact">Contact</a></li>
+            <li><a class="" href="/blogs">Blogs</a></li>
+            <li><a class="" href="#projects">Projects</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
     <div class="row">
-          <div class="col s3">
-           <!-- Grey navigation panel -->
-         </div>
+      <div class="col s3 m3 l3">
+        <!-- side navigation panel -->    
+      </div>
 
-         <div class="col s9 m9 l9">
-             <div class="col s9 m9 l9 section" id="about">
-                   <div class="card z-depth-1 hoverable #263238 blue-grey darken-4">
-                       <div class="card-title center-align white-text ">About Me</div>
-                       <div class="card-image responsive-img">
-                           <img  src="https://scontent.fhel1-1.fna.fbcdn.net/v/t1.0-9/29133856_1638453169566205_5910336170227821358_n.jpg?_nc_cat=0&oh=9d6f61409a86d91c50fd6659ffe55f22&oe=5BA143B3">
-                       </div>
-                       <div class="divider">
-                           <p></span></p>
-                       </div>
-                       <div class="card-content white-text ">
-                               <p>My name is Nibesh Khadka, studying IT engineering in Oulu, Finland. My aim is to become Machine Learning Engineer and make amazing models and software in future</p>
+      <div class="col s8 m8 l8">
+        <!-- main body-->
+        <div class="section">
+          <div id="img-portfolio" class="responsive-img">
 
-                       </div>
-                       <div class="card-action center-align">
-                            <a href="">Update
-                                <i class="small material-icons ">update</i>
-                            </a>
-                       </div>
-                       <div class="card-action">
-                        <!--  <form class="#263238 blue-grey darken-4 center-align" action="" method="POST">
-                                   <button class="btn #263238 blue-grey darken-4 #b71c1c-text red-text darken-4 z-depth-0">Delete
-                                       <i class="small material-icons">delete</i>
-                                   </button>
-                               </form>-->
-
-                     </div>
-                  </div>
-
-             </div>
-             <div class="divider">
-             <div class="col s9 m9 l9 section " id="contact">
-
-             </div>
-              <div class="divider">
-              <div class="col s9 m9 l9 section " id="projects">
-
-              </div>
-         </div>
-
+          </div>
         </div>
-<% include partials/footer.ejs %>
+        <divider>
+          <div class="section">
+            <div id="about">
+              <h2>About me</h2>
+            </div>
+          </diV>
+          <divider>
+            <div class="section">
+              <div id="contact">
+                <h2>Contact</h2>
+              </div>
+            </diV>
+            <divider>
+              <div class="section">
+                <div id="education">
+                  <h2>Education</h2>
+                </div>
+              </diV>
+              <divider>
+                <div class="section">
+                  <div id="job">
+                    <h2>Job</h2>
+                  </div>
+                </diV>
+                <divider>
+                  <div class="section">
+                    <div id="projects">
+                      <h2>Projects</h2>
+                    </div>
+                  </diV>
+
+      </div>
+
+
+      <% include partials/footer.ejs %>

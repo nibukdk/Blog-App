@@ -1,5 +1,5 @@
 var express = require('express'),
-    router =     router = express.Router(),
+     router = express.Router(),
     Blog = require("../models/post.js");
 
 
@@ -20,6 +20,7 @@ var express = require('express'),
 router.get("/portfolio", function(req,res){
   res.render("portfolio");
 });
+
 
 
 module.exports= router;
